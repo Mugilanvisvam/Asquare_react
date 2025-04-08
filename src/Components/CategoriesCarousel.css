@@ -1,0 +1,28 @@
+/* Hide scrollbar */
+.custom-scroll::-webkit-scrollbar {
+    display: none;
+  }
+  .custom-scroll {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  /* Category Image Styling */
+  .category-img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+  }
+  
+  /* Buttons */
+  .btn-light {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .container{
+    max-width:1300px !important;
+  }

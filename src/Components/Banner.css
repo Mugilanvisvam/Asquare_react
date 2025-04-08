@@ -1,0 +1,23 @@
+.banner-container {
+    width: 100%;
+    max-width: 1200px; /* Limits banner width on large screens */
+    margin: 0 auto;
+  }
+  
+  .banner-img {
+    width: 100%;
+    height: auto;
+    max-height: 400px;
+    object-fit:fill;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  @media (max-width: 768px) {
+    .banner-img {
+      max-height: 250px; /* Reduce height for mobile */
+    object-fit: cover;
+
+    }
+  }
+  

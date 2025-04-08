@@ -1,0 +1,101 @@
+/* Sidebar Styling */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -280px;
+  width: 280px;
+  height: 100vh;
+  background-color: #fff;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  transition: left 0.3s ease-in-out;
+  z-index: 1050;
+  padding-top: 20px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.sidebar.open {
+  left: 0;
+}
+
+/* Sidebar Header */
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  border-bottom: 1px solid #ddd;
+  background: #f8f9fa;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* Sidebar Menu */
+.sidebar-menu {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.sidebar-menu a {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  text-decoration: none;
+  color: #333;
+  font-size: 18px;
+  transition: background 0.3s ease;
+}
+
+.sidebar-menu a:hover {
+  background: #f1f1f1;
+}
+
+.sidebar-menu a svg {
+  margin-right: 10px;
+}
+
+/* More Menu Dropdown */
+.more-menu {
+  cursor: pointer;
+  position: relative;
+}
+
+.more-toggle {
+  display: flex;
+   justify-content:flex-start;
+  align-items: center; 
+  width: 100%;
+}
+
+.arrow-icon {
+  transition: transform 0.3s ease;
+}
+
+.arrow-icon.open {
+  transform: rotate(180deg);
+}
+
+/* Hidden dropdown initially */
+.dropdown-menu {
+  display: flex;
+  flex-direction: column;
+  padding-left: 15px;
+}
+
+.dropdown-menu a {
+  padding: 8px;
+  font-size: 16px;
+}
+
+/* Hide on larger screens */
+@media (min-width: 992px) {
+  .more-menu {
+      display: none !important;
+  }
+}

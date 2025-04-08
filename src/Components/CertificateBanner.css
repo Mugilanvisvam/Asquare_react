@@ -1,0 +1,28 @@
+.certificate-card {
+    background: linear-gradient(white, #f5f5dc);
+    border: 2px solid gold;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .text-gold {
+    color: #d4a017;
+  }
+  
+  .seal {
+    position: absolute;
+    top: 10%;
+    right: 5%;
+  }
+  
+  .seal-image {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .store-badge {
+    width: 150px;
+  }
+  

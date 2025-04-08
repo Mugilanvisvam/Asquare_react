@@ -1,0 +1,51 @@
+.card {
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card img {
+  height: 180px;
+  object-fit: cover;
+  width: 100%;
+  border-radius: 10px 10px 0 0;
+}
+
+/* For screens smaller than 992px (tablet view and below), show 2 cards per row */
+@media (max-width: 992px) {
+  .col-md-3 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+}
+
+/* For screens smaller than 576px (mobile view), show 2 cards per row */
+@media (max-width: 576px) {
+  .col-md-3 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+
+  .card img {
+    height: 150px; /* Reduce image size for smaller screens */
+  }
+}
+
+/* For tablet view (768px and larger), show 3 cards per row */
+@media (min-width: 768px) {
+  .col-md-3 {
+    flex: 0 0 33.33%;  /* 3 cards per row */
+    max-width: 33.33%;
+  }
+}
+/* For laptop and larger screens (1024px and larger), show 4 cards per row */
+@media (min-width: 1024px) {
+  .col-md-3 {
+    flex: 0 0 25%;  /* 4 cards per row */
+    max-width: 25%;
+  }
+}
