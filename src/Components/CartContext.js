@@ -1,16 +1,30 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useEffect } from "react";
 
-// Create Cart Context
+// Create the CartContext
 export const CartContext = createContext();
 
-export const CartProvider = ({ children }) => { // Ensure named export
-  const [cart, setCart] = useState([]);
+// CartProvider component
+export const CartProvider = ({ children }) => {
+  const [cart, setCart] = useState(() => {
+    try {
+      const storedCart = localStorage.getItem("cart");
+      return storedCart ? JSON.parse(storedCart) : [];
+    } catch (error) {
+      console.error("Error loading cart from localStorage:", error);
+      return [];
+    }
+  });
 
-  // Function to add item to cart
-  const addToCart = (product, quantity) => {
+  // Save cart to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
+
+  // Add to cart
+  const addToCart = (product, quantity = 1) => {
     setCart((prevCart) => {
-      const existingItem = prevCart.find((item) => item.id === product.id);
-      if (existingItem) {
+      const existing = prevCart.find((item) => item.id === product.id);
+      if (existing) {
         return prevCart.map((item) =>
           item.id === product.id
             ? { ...item, quantity: item.quantity + quantity }
@@ -21,18 +35,25 @@ export const CartProvider = ({ children }) => { // Ensure named export
     });
   };
 
-  // Function to remove item from cart
-  const removeFromCart = (productId) => {
-    setCart((prevCart) => prevCart.filter((item) => item.id !== productId));
+  // Remove from cart
+  const removeFromCart = (index) => {
+    setCart((prevCart) => prevCart.filter((_, i) => i !== index));
   };
+  
 
-  // Function to clear cart
-  const clearCart = () => {
-    setCart([]);
+  // Update quantity
+  const updateQuantity = (productId, newQuantity) => {
+    setCart((prevCart) =>
+      prevCart.map((item) =>
+        item.id === productId ? { ...item, quantity: newQuantity } : item
+      )
+    );
   };
 
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart, clearCart }}>
+    <CartContext.Provider
+      value={{ cart, addToCart, removeFromCart, updateQuantity }}
+    >
       {children}
     </CartContext.Provider>
   );

@@ -12,28 +12,34 @@ import CategoryPage from "./Components/CategoryPage.js";
 import ProductDetails from "./Components/ProductDetails.js";
 import LoginCreateAccount from "./Pages/LoginCreateAccount.js";
 import Cart from "./Components/Cart.js";
+import { CartProvider } from "./Components/CartContext"; // <-- ✅ Import your CartProvider
+
 function App() {
   return (
-    <Router> {/* ✅ Wrap everything inside <Router> */}
-      <div className="App">
-        <Header />
-        <Routes>
-          <Route path="/" element={<> 
-            <CategoriesCarousel />
-            <Banner />
-            <CategoryGrid />
-            <BottomBanner />
-            <FavouriteProducts />
-          </>} />
-          <Route path="/category/:id" element={<CategoryPage />} />
-          <Route path="/product/:name" element={<ProductDetails />} />
-          <Route path="/login" element={<LoginCreateAccount />} />
-          <Route path="/cart" element={<Cart />} />
-        </Routes>
-        {/* <CertificateBanner /> */}
-        <Footer />
-      </div>
-    </Router>
+    <CartProvider> {/* ✅ Wrap your entire app */}
+      <Router>
+        <div className="App">
+          <Header />
+          <Routes>
+            <Route path="/" element={
+              <>
+                <CategoriesCarousel />
+                <Banner />
+                <CategoryGrid />
+                <BottomBanner />
+                <FavouriteProducts />
+              </>
+            } />
+            <Route path="/category/:id" element={<CategoryPage />} />
+            <Route path="/product/:name" element={<ProductDetails />} />
+            <Route path="/login" element={<LoginCreateAccount />} />
+            <Route path="/cart" element={<Cart />} />
+          </Routes>
+          {/* <CertificateBanner /> */}
+          <Footer />
+        </div>
+      </Router>
+    </CartProvider>
   );
 }
 

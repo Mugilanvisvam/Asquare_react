@@ -1,19 +1,19 @@
 import React, { useState, useContext } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { FaShoppingCart } from "react-icons/fa";
-import { CartContext } from "./CartContext"; // Import Cart Context
+import { CartContext } from "./CartContext";
 import CategoriesCarousel from "./CategoriesCarousel";
+
 const ProductDetails = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const { product } = location.state || {};
-  const { addToCart } = useContext(CartContext); // Use Cart Context
+  const { addToCart } = useContext(CartContext);
 
   const [quantity, setQuantity] = useState(1);
   const [showQuantitySelector, setShowQuantitySelector] = useState(false);
 
-  if (!product) {
-    return <h2 className="text-center mt-5">Product Not Found</h2>;
-  }
+  if (!product) return <h2 className="text-center mt-5">Product Not Found</h2>;
 
   const handleIncrease = () => setQuantity(quantity + 1);
   const handleDecrease = () => quantity > 1 && setQuantity(quantity - 1);
@@ -24,7 +24,7 @@ const ProductDetails = () => {
 
   const handleConfirmAddToCart = () => {
     addToCart(product, quantity);
-    setShowQuantitySelector(false);
+    // navigate("/cart"); // ✅ navigate to cart after adding
   };
 
   return (
